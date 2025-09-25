@@ -1,0 +1,75 @@
+FRONT END WEBSITE 
+
+https://asaqa988.github.io/Api-Library-System-/get.html
+
+
+
+END POINTS :- 
+
+
+Delete END POINT
+
+/DeleteBook.php
+
+get BOOK END POINT 
+	
+GetBook.php
+
+post END POINT 
+
+Addbook.php
+
+
+
+
+
+
+
+
+
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+ EXAMPLES 
+
+EXAMPLE 1 
+
+Delete 
+
+https://rahulshettyacademy.com/Library/DeleteBook.php
+{
+"ID" : "9283927319487411"
+}
+
+
+EXAMPLE 2
+
+
+get 
+	
+https://rahulshettyacademy.com/Library/GetBook.php?ID=9819991819862001
+
+
+
+EXAMPLE 3
+
+
+
+post 
+
+https://rahulshettyacademy.com/Library/Addbook.php 
+
+
+{
+"name":"nour mohammad saleem",
+"isbn":"981999181",
+"aisle":"9862001",
+"author":"qa friday 2"
+}
+
+
+homework 
+
