@@ -1,0 +1,95 @@
+{
+	"info": {
+		"_postman_id": "0ddbdbcb-b80e-47e3-814a-926d349f83c1",
+		"name": "Test book Project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "48719869",
+		"_collection_link": "https://abualrub81818-3778200.postman.co/workspace/Waleed-Abualrub's-Workspace~2fd0d89d-059a-437e-86d9-3b4803a1daa2/collection/48719869-0ddbdbcb-b80e-47e3-814a-926d349f83c1?action=share&source=collection_link&creator=48719869"
+	},
+	"item": [
+		{
+			"name": "add the book",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"name\":\"waleed naser\",\r\n\"isbn\":\"43423423\",\r\n\"aisle\":\"34324234\",\r\n\"author\":\"waleed nasser\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://rahulshettyacademy.com/Library/Addbook.php",
+					"protocol": "https",
+					"host": [
+						"rahulshettyacademy",
+						"com"
+					],
+					"path": [
+						"Library",
+						"Addbook.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "read data the book",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://rahulshettyacademy.com/Library/GetBook.php?ID=4342342334324234",
+					"protocol": "https",
+					"host": [
+						"rahulshettyacademy",
+						"com"
+					],
+					"path": [
+						"Library",
+						"GetBook.php"
+					],
+					"query": [
+						{
+							"key": "ID",
+							"value": "4342342334324234"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delet the book",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"ID\" : \"4342342334324234\"\r\n}\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://rahulshettyacademy.com/Library/DeleteBook.php",
+					"protocol": "https",
+					"host": [
+						"rahulshettyacademy",
+						"com"
+					],
+					"path": [
+						"Library",
+						"DeleteBook.php"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
