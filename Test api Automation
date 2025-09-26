@@ -1,0 +1,263 @@
+{
+	"info": {
+		"_postman_id": "0ddbdbcb-b80e-47e3-814a-926d349f83c1",
+		"name": "Test book Project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "48719869",
+		"_collection_link": "https://abualrub81818-3778200.postman.co/workspace/Waleed-Abualrub's-Workspace~2fd0d89d-059a-437e-86d9-3b4803a1daa2/collection/48719869-0ddbdbcb-b80e-47e3-814a-926d349f83c1?action=share&source=collection_link&creator=48719869"
+	},
+	"item": [
+		{
+			"name": "add the book",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"let randomnewname = pm.variables.replaceIn('{{$randomColor}}')\r",
+							"let randomnewname1 = pm.variables.replaceIn('{{$randomNamePrefix}}')\r",
+							"let randomnuber = pm.variables.replaceIn('{{$randomInt}}')\r",
+							"let randomnuber2 = pm.variables.replaceIn('{{$randomInt}}')\r",
+							"let randomaauthor = pm.variables.replaceIn('{{$randomFullName}}')\r",
+							"\r",
+							"\r",
+							"\r",
+							"pm.collectionVariables.set(\"NewName\", randomnewname+randomnewname1)\r",
+							"pm.collectionVariables.set(\"Newisbn\", randomnuber+randomnuber2*randomnuber)\r",
+							"pm.collectionVariables.set(\"Newaisle\", randomnuber*randomnuber2)\r",
+							"pm.collectionVariables.set(\"Newauthor\", randomaauthor)"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let myrespon =pm.response.json()\r",
+							"\r",
+							"pm.collectionVariables.set(\"bookID\", myrespon.ID)\r",
+							"\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"\r",
+							"    pm.response.to.have.status(200);\r",
+							"})\r",
+							"\r",
+							"\r",
+							"pm.test(\"success add \" , function () {\r",
+							"\r",
+							"pm.expect(myrespon).to.have.property('Msg','successfully added')\r",
+							"\r",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"name\":\"{{NewName}}\",\r\n\"isbn\":\"{{Newisbn}}\",\r\n\"aisle\":\"{{Newaisle}}\",\r\n\"author\":\"{{Newauthor}}\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://rahulshettyacademy.com/Library/Addbook.php",
+					"protocol": "https",
+					"host": [
+						"rahulshettyacademy",
+						"com"
+					],
+					"path": [
+						"Library",
+						"Addbook.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "read data the book",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"\r",
+							"    pm.response.to.have.status(200);\r",
+							"})\r",
+							"\r",
+							"\r",
+							"\r",
+							"let myrespon = pm.response.json()\r",
+							"let expectedIsbn = pm.collectionVariables.get(\"Newisbn\")\r",
+							"\r",
+							"pm.test(\"add new book\", function () {\r",
+							"    pm.expect(myrespon[0]).to.have.property('isbn', expectedIsbn);\r",
+							"})\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://rahulshettyacademy.com/Library/GetBook.php?ID={{bookID}}",
+					"protocol": "https",
+					"host": [
+						"rahulshettyacademy",
+						"com"
+					],
+					"path": [
+						"Library",
+						"GetBook.php"
+					],
+					"query": [
+						{
+							"key": "ID",
+							"value": "{{bookID}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delet the book",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let myrespon = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"\r",
+							"    pm.response.to.have.status(200);\r",
+							"})\r",
+							"\r",
+							"pm.test(\"delete the book\", function(){\r",
+							"\r",
+							"pm.expect(myrespon).to.have.property( 'msg', 'book is successfully deleted')\r",
+							"\r",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"ID\" : \"{{bookID}}\"\r\n}\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://rahulshettyacademy.com/Library/DeleteBook.php",
+					"protocol": "https",
+					"host": [
+						"rahulshettyacademy",
+						"com"
+					],
+					"path": [
+						"Library",
+						"DeleteBook.php"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "NewName",
+			"value": ""
+		},
+		{
+			"key": "Newisbn",
+			"value": ""
+		},
+		{
+			"key": "Newaisle",
+			"value": ""
+		},
+		{
+			"key": "Newauthor",
+			"value": ""
+		},
+		{
+			"value": ""
+		},
+		{
+			"value": ""
+		},
+		{
+			"key": "bookID",
+			"value": ""
+		},
+		{
+			"key": "Isban ",
+			"value": ""
+		}
+	]
+}
